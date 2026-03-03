@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hiring IQ — Vidhya Sriram</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f4f6f8;
+    --surface2: #eaecf0;
+    --border: #dde1e7;
+    --text: #0f1923;
+    --muted: #6b7685;
+    --accent: #0e7490;
+    --accent-dim: rgba(14, 116, 144, 0.08);
+    --accent-mid: rgba(14, 116, 144, 0.20);
+    --go: #1e7a4a;
+    --go-dim: rgba(30, 122, 74, 0.10);
+    --pause: #a06020;
+    --pause-dim: rgba(160, 96, 32, 0.10);
+    --nogo: #b03030;
+    --nogo-dim: rgba(176, 48, 48, 0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 60px 72px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(14,116,144,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 9vw, 108px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em { font-style: italic; color: var(--accent); }
+
+  .hero-pov {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.8vw, 30px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-problem {
+    max-width: 620px;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-intro {
+    max-width: 620px;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #4a5568;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  .hero-intro strong { color: var(--text); font-weight: 500; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-item {
+    padding: 36px 40px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .stat-sub {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── QUALS BLOCK ── */
+  .quals {
+    padding: 64px 60px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .quals-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .quals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .qual-item {
+    padding: 28px 32px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .qual-icon {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .qual-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  .qual-text strong { font-weight: 500; }
+
+  /* ── JOURNEY MAP ── */
+  .journey {
+    padding: 64px 60px 0;
+  }
+
+  .journey-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .journey-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .journey-phase {
+    padding: 28px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .journey-phase:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .journey-phase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .journey-phase-context {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .journey-phase-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .journey-phase-method {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ── PHASES ── */
+  .phases { padding: 0 60px 100px; }
+
+  .phase {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase:last-child { border-bottom: none; }
+
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 52px;
+  }
+
+  .phase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 72px;
+  }
+
+  .phase-context {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .phase-method {
+    font-size: 15px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PHASE BODY ── */
+  .phase-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .phase-col-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .label-human { color: var(--accent); border-bottom-color: var(--accent-mid); }
+  .label-ai { color: var(--go); border-bottom-color: rgba(30,122,74,0.2); }
+
+  .phase-col-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+
+  .phase-col-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── THREE PANEL DEMO ── */
+  .demo-container {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  .demo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .demo-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .demo-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent-mid);
+  }
+
+  .demo-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .demo-panel {
+    padding: 28px 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .demo-panel:last-child { border-right: none; }
+
+  .demo-panel:first-child { background: #fafafa; }
+  .demo-panel:nth-child(2) { background: #f7fbfc; }
+
+  .demo-panel-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .demo-panel-label-input { color: var(--muted); }
+  .demo-panel-label-prompt { color: var(--accent); }
+  .demo-panel-label-output { color: var(--go); }
+
+  /* Vague letter */
+  .demo-vague {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #4a5568;
+    font-style: italic;
+  }
+
+  .demo-vague-word {
+    border-bottom: 2px dashed var(--nogo);
+    color: var(--text);
+    cursor: help;
+    font-style: normal;
+    position: relative;
+  }
+
+  .demo-hint {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Prompt panel */
+  .demo-prompt {
+    background: rgba(14, 116, 144, 0.06);
+    border: 1px solid rgba(14, 116, 144, 0.18);
+    border-radius: 2px;
+    padding: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #2d3748;
+  }
+
+  .demo-prompt-line { margin-bottom: 12px; }
+  .demo-prompt-line:last-child { margin-bottom: 0; }
+
+  .demo-prompt-highlight { color: #0e7490; font-weight: 500; }
+
+  .demo-prompt ul {
+    list-style: none;
+    padding-left: 8px;
+    margin-top: 8px;
+  }
+
+  .demo-prompt ul li {
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    color: #4a5568;
+    font-size: 13px;
+  }
+
+  .demo-prompt ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #0e7490;
+  }
+
+  .demo-prompt-footer {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(14, 116, 144, 0.18);
+    font-size: 13px;
+    color: #0e7490;
+    font-style: italic;
+  }
+
+  /* Output panel */
+  .demo-result {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .demo-result-item {
+    padding: 12px 16px;
+    background: var(--go-dim);
+    border-left: 2px solid var(--go);
+  }
+
+  .demo-result-from {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nogo);
+    margin-bottom: 5px;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .demo-result-to {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .demo-result-to strong { color: var(--go); font-weight: 500; }
+
+  /* ── AI BOX (prompt + guardrail combined) ── */
+  .ai-box {
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .ai-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ai-box-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .ai-box-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ai-box-prompt {
+    padding: 24px 28px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .ai-box-guardrail {
+    padding: 24px 28px;
+    background: var(--pause-dim);
+  }
+
+  .ai-box-section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ai-box-section-label-prompt { color: var(--accent); border-bottom-color: var(--accent-mid); }
+  .ai-box-section-label-guardrail { color: var(--pause); border-bottom-color: rgba(160,96,32,0.2); }
+
+  .ai-box-prompt-toggle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .ai-box-prompt-toggle:hover { opacity: 0.7; }
+
+  .ai-box-guardrail-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  /* guardrail now inside ai-box */
+
+  /* ── OUTCOME ── */
+  .outcome {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: var(--go-dim);
+    border: 1px solid rgba(30,122,74,0.2);
+    color: var(--go);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .outcome-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--go);
+    flex-shrink: 0;
+  }
+
+  /* ── PLACEHOLDER ── */
+  .phase-placeholder {
+    padding: 48px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* Prompt block */
+  .prompt-block {
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+
+  .prompt-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--surface);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+  }
+
+  .prompt-block-header:hover { background: var(--surface2); }
+
+  .prompt-block-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .prompt-block-toggle {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity 0.2s;
+  }
+
+  .prompt-block-body {
+    padding: 0 24px 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .prompt-block-body .demo-prompt {
+    margin-top: 20px;
+  }
+
+  .prompt-toggle-btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: none;
+    border: none;
+    padding: 0 0 0 12px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+  }
+  .prompt-toggle-btn:hover { opacity: 1; }
+
+  /* Bridge line */
+  .bridge-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  /* Outcome label */
+  .outcome-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Closing section */
+  .closing {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 80px 60px;
+  }
+
+  .closing-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .closing-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .closing-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+
+  .closing-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 8px;
+  }
+
+  .closing-stat {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .closing-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .closing-stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Bridge line */
+  .bridge-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Closing section */
+  .closing {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 80px 60px;
+  }
+
+  .closing-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .closing-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .closing-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+
+  .closing-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 8px;
+  }
+
+  .closing-stat {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .closing-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .closing-stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .demo-body { grid-template-columns: 1fr; }
+    .demo-panel { border-right: none; border-bottom: 1px solid var(--border); }
+    .demo-panel:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .quals { padding: 48px 24px; }
+    .quals-grid { grid-template-columns: 1fr; }
+    .journey { padding: 48px 24px 0; }
+    .journey-track { grid-template-columns: repeat(2, 1fr); }
+    .phases { padding: 0 24px 60px; }
+    .phase-header { flex-direction: column; gap: 16px; }
+    .phase-num { font-size: 56px; width: auto; }
+    .phase-body { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Hiring IQ · 2024 · Portfolio Case Study</div>
+  <h1 class="hero-title">Hiring <em>IQ</em></h1>
+  <p class="hero-pov">AI gave humans the clarity to trust their own judgment.</p>
+  <p class="hero-problem">Expectations live in people's heads. Interviewers walk in without a shared standard. Debriefs become debates.</p>
+  <p class="hero-intro">
+    I designed a <strong>human-centric system</strong> that improved both the hiring team and the candidate's experience. Every phase starts with what a thoughtful, disciplined person would do. AI sharpens criteria, audits judgment, and keeps the process honest — <strong>the final decision is human, always.</strong><br><br>
+    Leveraging AI this way — with discipline, not just tools — is what built credibility as an AI-first consulting practice.
+  </p>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">5→4</div>
+    <div class="stat-label">Interview rounds</div>
+    <div class="stat-sub">Combined panels eliminated redundant loops for the candidate</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">~4</div>
+    <div class="stat-label">Async meetings eliminated</div>
+    <div class="stat-sub">Per hire, via Slack prep and written rationale</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">PM hires</div>
+    <div class="stat-sub">System applied and validated on senior roles</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Other organisations adopted this</div>
+    <div class="stat-sub">They saw the work. They asked for the system.</div>
+  </div>
+</div>
+
+
+
+<!-- BRIDGE -->
+<div class="bridge-line">The numbers came from a system built on one belief: better hiring is a human discipline, not a software problem.</div>
+
+<!-- JOURNEY MAP -->
+<div class="journey">
+  <div class="journey-eyebrow">The hiring journey — where each phase lives</div>
+  <div class="journey-track">
+    <div class="journey-phase" onclick="document.getElementById('phase0').scrollIntoView({behavior:'smooth'})">
+      <div class="journey-phase-num">00</div>
+      <div class="journey-phase-context">Before everything</div>
+      <div class="journey-phase-name">Start With the Recruiter</div>
+      <div class="journey-phase-method">Coached Signal</div>
+    </div>
+    <div class="journey-phase" onclick="document.getElementById('phase1').scrollIntoView({behavior:'smooth'})">
+      <div class="journey-phase-num">01</div>
+      <div class="journey-phase-context">Before interviews</div>
+      <div class="journey-phase-name">Role Clarity</div>
+      <div class="journey-phase-method">The Year-One Letter</div>
+    </div>
+    <div class="journey-phase" onclick="document.getElementById('phase2').scrollIntoView({behavior:'smooth'})">
+      <div class="journey-phase-num">02</div>
+      <div class="journey-phase-context">Interview design</div>
+      <div class="journey-phase-name">Panel Design</div>
+      <div class="journey-phase-method">Signal without Redundancy</div>
+    </div>
+    <div class="journey-phase" onclick="document.getElementById('phase3').scrollIntoView({behavior:'smooth'})">
+      <div class="journey-phase-num">03</div>
+      <div class="journey-phase-context">In the room</div>
+      <div class="journey-phase-name">The Interview</div>
+      <div class="journey-phase-method">Full Presence</div>
+    </div>
+    <div class="journey-phase" onclick="document.getElementById('phase4').scrollIntoView({behavior:'smooth'})">
+      <div class="journey-phase-num">04</div>
+      <div class="journey-phase-context">After the interview</div>
+      <div class="journey-phase-name">The Debrief</div>
+      <div class="journey-phase-method">Evidence Over Opinion</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASES -->
+<section class="phases">
+
+  <!-- PHASE 0 -->
+  <div class="phase" id="phase0">
+    <div class="phase-header">
+      <div class="phase-num">00</div>
+      <div>
+        <div class="phase-context">Before Everything · Recruiter Screening</div>
+        <div class="phase-title">Start With the Recruiter</div>
+        <div class="phase-method">Human coaching → AI audits for inadvertent bias</div>
+      </div>
+    </div>
+
+    <div class="phase-body">
+      <div>
+        <div class="phase-col-label label-human">The Human Design</div>
+        <p class="phase-col-text">
+          Before the recruiter spoke to a single candidate, the hiring manager and recruiter sat down together. Not a briefing — a conversation. They co-defined which signals actually predict success in this role and which ones feel like signals but aren't. The recruiter shaped the list as much as she received it.<br><br>
+          Her job was never to screen for fit. It was to surface evidence. Her written rationale after every screening call fed directly into panel design — shaping which signals the panel needed to prioritise.
+        </p>
+      </div>
+      <div>
+        <div class="phase-col-label label-ai">Where AI Enters</div>
+        <p class="phase-col-text">
+          AI was not in the screening conversation. It had no role there.<br><br>
+          After each call, the recruiter ran her own written notes through AI — not to rewrite them, but to audit them. The prompt checked for language that might reflect inadvertent bias: conclusions without evidence, comparative language, or impressions untethered to anything the candidate actually said or did.
+        </p>
+      </div>
+    </div>
+
+    <!-- AI BOX -->
+    <div class="ai-box">
+      <div class="ai-box-header">
+        <div class="ai-box-title">How AI was used</div>
+      </div>
+      <div class="ai-box-body">
+        <div class="ai-box-prompt">
+          <div class="ai-box-section-label ai-box-section-label-prompt">The prompt <button class="prompt-toggle-btn" onclick="togglePrompt('p0p', this)">View prompt →</button></div>
+          <div class="demo-prompt" id="p0p" style="display:none; margin-top:12px;">
+            <div class="demo-prompt-line">Read these recruiter notes from a screening call.</div>
+            <div class="demo-prompt-line">Flag anything that:
+              <ul>
+                <li>Draws a conclusion without citing what the candidate actually said or did.</li>
+                <li>Uses comparative language — better than, more polished than, unlike others — without evidence.</li>
+                <li>Describes an impression or feeling with no behavioural anchor.</li>
+              </ul>
+            </div>
+            <div class="demo-prompt-footer">Do not rewrite the notes. Do not assess the candidate. Just show me where the evidence is missing so I can decide what to do with it.</div>
+          </div>
+        </div>
+        <div class="ai-box-guardrail">
+          <div class="ai-box-section-label ai-box-section-label-guardrail">The guardrail</div>
+          <div class="ai-box-guardrail-text">AI does not assess the candidate — ever. It audits the recruiter's own language for gaps between impression and evidence. The recruiter decides what to do with every flag. Her rationale, not AI's, goes to the hiring manager.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcome">
+      <div class="outcome-label">Impact</div>
+      The recruiter arrived at panel design as a contributor, not a gatekeeper. Her signal was clean — and the hiring manager trusted it.
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase" id="phase1">
+    <div class="phase-header">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-context">Before Interviews · Role Clarity</div>
+        <div class="phase-title">Skip the job description.<br>Write a letter instead.</div>
+        <div class="phase-method">Your thinking → AI sharpens what you already mean</div>
+      </div>
+    </div>
+
+    <div class="phase-body">
+      <div>
+        <div class="phase-col-label label-human">The Human Design</div>
+        <p class="phase-col-text">
+          Write to the person you hope to hire — one year in. Describe what they built, what they changed, what made you proud. That letter becomes your hiring standard.<br><br>
+          Not a list of requirements. <strong>A picture of success.</strong> It forces clarity that a job description never demands — because you're writing to a person, not filling a template.
+        </p>
+      </div>
+      <div>
+        <div class="phase-col-label label-ai">Where AI Enters</div>
+        <p class="phase-col-text">
+          AI reads your letter for what humans consistently miss — <strong>vague language disguised as clarity.</strong> Words like "visionary" and "great EQ" feel specific when you write them. They mean different things to every person in the room.<br><br>
+          AI translates each one into a specific, observable behaviour an interviewer can actually listen for.
+        </p>
+      </div>
+    </div>
+
+    <!-- TWO PANEL DEMO -->
+    <div class="demo-container">
+      <div class="demo-header">
+        <div class="demo-label">Input · Output</div>
+        <div class="demo-badge">Live Example</div>
+      </div>
+      <div class="demo-body" style="grid-template-columns:1fr 1fr;">
+        <div class="demo-panel">
+          <div class="demo-panel-label demo-panel-label-input">The year-one letter (draft)</div>
+          <p class="demo-vague">
+            "You've been exactly what we needed — a truly
+            <span class="demo-vague-word" title="Vague: means different things to every interviewer in the room">visionary</span>
+            leader who showed
+            <span class="demo-vague-word" title="Vague: unobservable, untestable in an interview">exceptional EQ</span>
+            from day one."
+          </p>
+          <p class="demo-hint">Hover the underlined words to see why AI flags them.</p>
+        </div>
+        <div class="demo-panel">
+          <div class="demo-panel-label demo-panel-label-output">AI output — sharpened criteria</div>
+          <div class="demo-result">
+            <div class="demo-result-item">
+              <div class="demo-result-from">Visionary</div>
+              <div class="demo-result-to"><strong>Observable:</strong> Mapped the 12-month product architecture in week one and secured engineering alignment before the first sprint.</div>
+            </div>
+            <div class="demo-result-item">
+              <div class="demo-result-from">Exceptional EQ</div>
+              <div class="demo-result-to"><strong>Observable:</strong> Resolved two cross-functional conflicts without escalating either to leadership — both teams felt the outcome was fair.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI BOX -->
+    <div class="ai-box">
+      <div class="ai-box-header">
+        <div class="ai-box-title">How AI was used</div>
+      </div>
+      <div class="ai-box-body">
+        <div class="ai-box-prompt">
+          <div class="ai-box-section-label ai-box-section-label-prompt">The prompt <button class="prompt-toggle-btn" onclick="togglePrompt('p1p', this)">View prompt →</button></div>
+          <div class="demo-prompt" id="p1p" style="display:none; margin-top:12px;">
+            <div class="demo-prompt-line">You're a <span class="demo-prompt-highlight">hiring clarity expert</span> coaching me through this.</div>
+            <div class="demo-prompt-line">I've written a future-state letter describing the person I want to hire, one year in. Read it for words that feel specific but mean different things to different people.</div>
+            <div class="demo-prompt-line">For each one:
+              <ul>
+                <li>Give me the observable behaviour it should mean. Something an interviewer can actually listen for, not just nod at.</li>
+                <li>Tell me why that word is a problem. Help me see it, not just fix it.</li>
+                <li>Give me a concrete example. Something that sounds like a real person in a real situation — not a textbook definition.</li>
+              </ul>
+            </div>
+            <div class="demo-prompt-line">Be direct. If you spot a contradiction in what I'm asking for, call it out.</div>
+            <div class="demo-prompt-footer">Success looks like this: I should be able to hand each observable behaviour directly to an interviewer and they'd know exactly what to listen for.</div>
+          </div>
+        </div>
+        <div class="ai-box-guardrail">
+          <div class="ai-box-section-label ai-box-section-label-guardrail">The guardrail</div>
+          <div class="ai-box-guardrail-text">AI does not author intent. It sharpens what the human already means. The hiring manager owns what "good" looks like — AI makes sure they've actually said it in a way that survives a panel of five different people.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="outcome">
+      <div class="outcome-label">Impact</div>
+      Two words on a page became criteria an interviewer could actually use. That's the whole point.
+    </div>
+
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase" id="phase2">
+    <div class="phase-header">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-context">Interview Design · Panel Design</div>
+        <div class="phase-title">Build a Panel Where Every Interviewer Tests Something Different</div>
+        <div class="phase-method">Your human design → AI audits for gaps and redundancy</div>
+      </div>
+    </div>
+
+    <div class="phase-body">
+      <div>
+        <div class="phase-col-label label-human">The Human Design</div>
+        <p class="phase-col-text">
+          The recruiter's screening rationale arrived before the panel was assembled — her read on the candidate shaped which signals the panel needed to cover. The hiring manager anchored the panel from there, owning the signals only they could evaluate: overall trajectory, strategic fit, the read that comes from being accountable for the hire. The cross-functional interviewers filled everything else, each assigned a distinct signal the hiring manager couldn't objectively own themselves.<br><br>
+          The team the new hire would work <em>with</em> had a seat — not as a formality, but because their read on collaboration mattered. The functional team could sit in if needed. <strong>Not as a separate loop. As observers with a voice.</strong><br><br>
+          Coordination happened async. No discussion before each interviewer filed independent notes. Groupthink was designed out, not hoped away.
+        </p>
+      </div>
+      <div>
+        <div class="phase-col-label label-ai">Where AI Enters</div>
+        <p class="phase-col-text">
+          Once the panel was mapped, AI audited it for two failure modes that are invisible until it's too late: <strong>redundancy</strong> — two interviewers testing the same signal — and <strong>blind spots</strong> — competencies nobody was covering at all.<br><br>
+          A coverage map made every signal visible and owned. If AI flagged an overlap, the panel was redesigned before the first interview — not discovered in the debrief when it was too late to do anything about it.
+        </p>
+      </div>
+    </div>
+
+    <!-- DEMO -->
+    <div class="demo-container">
+      <div class="demo-header">
+        <div class="demo-label">Input · Output</div>
+        <div class="demo-badge">Live Example</div>
+      </div>
+      <div class="demo-body" style="grid-template-columns:1fr 1fr;">
+
+        <div class="demo-panel">
+          <div class="demo-panel-label demo-panel-label-input">The panel as designed</div>
+          <div class="demo-result" style="gap:8px;">
+            <div class="demo-result-item" style="border-left-color:var(--muted); background:var(--surface2);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Interviewer A · Sales Lead</div>
+              <div style="font-size:13px; color:var(--text);">Testing: Cross-functional collaboration with Sales</div>
+            </div>
+            <div class="demo-result-item" style="border-left-color:var(--nogo); background:var(--nogo-dim);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--nogo); margin-bottom:4px;">Interviewer B · Engineering Lead ⚠</div>
+              <div style="font-size:13px; color:var(--text);">Testing: Conflict resolution with Sales</div>
+            </div>
+            <div class="demo-result-item" style="border-left-color:var(--muted); background:var(--surface2);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Interviewer C · Product Peer</div>
+              <div style="font-size:13px; color:var(--text);">Testing: Roadmap prioritisation under pressure</div>
+            </div>
+          </div>
+          <p class="demo-hint">A and B both testing Sales collaboration — different angles, same signal.</p>
+        </div>
+
+        <div class="demo-panel">
+          <div class="demo-panel-label demo-panel-label-output">After AI audit — panel redesigned</div>
+          <div class="demo-result" style="gap:8px;">
+            <div class="demo-result-item" style="border-left-color:var(--nogo); background:var(--nogo-dim);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--nogo); margin-bottom:4px;">⚠ Redundancy</div>
+              <div style="font-size:13px; line-height:1.6; color:var(--text);">A and B testing the same signal. Overlapping data, missed signal elsewhere.</div>
+            </div>
+            <div class="demo-result-item" style="border-left-color:var(--pause); background:var(--pause-dim);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--pause); margin-bottom:4px;">Blind spot</div>
+              <div style="font-size:13px; line-height:1.6; color:var(--text);">Nobody testing roadmap defence under Engineering pushback.</div>
+            </div>
+            <div class="demo-result-item">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--go); margin-bottom:4px;">Fix — B reassigned</div>
+              <div style="font-size:13px; line-height:1.6; color:var(--text);">B now owns: Roadmap defence under Engineering pushback. A keeps Sales collaboration.</div>
+            </div>
+          </div>
+          <p class="demo-hint" style="color:var(--go);">Every signal owned once. No overlap. No gap.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AI BOX -->
+    <div class="ai-box">
+      <div class="ai-box-header">
+        <div class="ai-box-title">How AI was used</div>
+      </div>
+      <div class="ai-box-body">
+        <div class="ai-box-prompt">
+          <div class="ai-box-section-label ai-box-section-label-prompt">The prompt <button class="prompt-toggle-btn" onclick="togglePrompt('p2p', this)">View prompt →</button></div>
+          <div class="demo-prompt" id="p2p" style="display:none; margin-top:12px;">
+            <div class="demo-prompt-line">Review this interview panel against the role's required signals.</div>
+            <div class="demo-prompt-line">Flag:
+              <ul>
+                <li>Any signal being tested more than once across interviewers.</li>
+                <li>Any required signal with no interviewer assigned to it.</li>
+              </ul>
+            </div>
+            <div class="demo-prompt-footer">For each issue, suggest a specific reassignment — don't just name the problem.</div>
+          </div>
+        </div>
+        <div class="ai-box-guardrail">
+          <div class="ai-box-section-label ai-box-section-label-guardrail">The guardrail</div>
+          <div class="ai-box-guardrail-text">AI flags redundancy and gaps — it does not reassign interviewers. The hiring manager reviews the audit and makes the call. Panel changes require a human decision, not an algorithm.</div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="outcome">
+      <div class="outcome-label">Impact</div>
+      Every interviewer walked in with a distinct purpose. The candidate felt it. The panel felt it. No wasted round, no missed signal.
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase" id="phase3">
+    <div class="phase-header">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-context">In the Room · The Interview</div>
+        <div class="phase-title">Stop Taking Notes.<br>Start Listening.</div>
+        <div class="phase-method">Your human design → AI captures so you stay present</div>
+      </div>
+    </div>
+
+    <div class="phase-body">
+      <div>
+        <div class="phase-col-label label-human">The Human Design</div>
+        <p class="phase-col-text">
+          The interviewer's only job in the room is to be present. Eye contact. Active listening. Running a real problem the team was actively working on — not a hypothetical. <strong>Not taking notes.</strong><br><br>
+          Candidates were informed at the start of the process that interviews would be transcribed, and consented before scheduling. No exceptions.<br><br>
+          No interviewer discussed what they heard before filing their independent written assessment. That discipline was non-negotiable.
+        </p>
+      </div>
+      <div>
+        <div class="phase-col-label label-ai">Where AI Enters</div>
+        <p class="phase-col-text">
+          Transcription runs in the background. Verbatim. No interpretation, no summary, no flags.<br><br>
+          After the interview, the interviewer reads the transcript to anchor their written assessment in what was actually said — not what they remember.
+        </p>
+      </div>
+    </div>
+
+    <!-- AI BOX — guardrail only, no prompt -->
+    <div class="ai-box">
+      <div class="ai-box-header">
+        <div class="ai-box-title">How AI was used</div>
+      </div>
+      <div class="ai-box-body" style="grid-template-columns:1fr;">
+        <div class="ai-box-guardrail" style="border-right:none;">
+          <div class="ai-box-section-label ai-box-section-label-guardrail">The guardrail</div>
+          <div class="ai-box-guardrail-text">AI captures only — it does not evaluate, score, or flag candidate responses. Interpretation belongs to the interviewer, after the fact, with the transcript as their reference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcome">
+      <div class="outcome-label">Impact</div>
+      The interviewer was fully present. The candidate had their full attention — and felt it.
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase" id="phase4">
+    <div class="phase-header">
+      <div class="phase-num">04</div>
+      <div>
+        <div class="phase-context">After the Interview · The Debrief</div>
+        <div class="phase-title">Make Every Interviewer Defend Their Opinion With Evidence</div>
+        <div class="phase-method">Your human design → AI reads across all transcripts before the room convenes</div>
+      </div>
+    </div>
+
+    <div class="phase-body">
+      <div>
+        <div class="phase-col-label label-human">The Human Design</div>
+        <p class="phase-col-text">
+          Every interviewer filed their written assessment independently — rating plus evidence — before any debrief conversation. If you couldn't cite a moment from the transcript, it didn't count.<br><br>
+          No hallway conversations. No "what did you think?" before notes were in. The debrief was a comparison of independent reads, not a negotiation shaped by whoever spoke first.
+        </p>
+      </div>
+      <div>
+        <div class="phase-col-label label-ai">Where AI Enters</div>
+        <p class="phase-col-text">
+          AI read across all transcripts and all assessments together — something no single interviewer could do. It surfaced patterns invisible to anyone who only saw one conversation.<br><br>
+          One interviewer noted answers felt rehearsed. Another flagged every response pivoted to team credit. A third observed no concrete example was ever given unprompted. Individually — weak signals. Together — a pattern. <strong>AI connected them before the debrief started.</strong><br><br>
+          AI also audited each written assessment for unsupported opinions. "Too aggressive" with no transcript reference got flagged. The hiring manager reviewed every flag before the room convened.
+        </p>
+      </div>
+    </div>
+
+    <!-- DEMO -->
+    <div class="demo-container">
+      <div class="demo-header">
+        <div class="demo-label">The human override — when AI is right and the human overrules anyway</div>
+        <div class="demo-badge">Key Moment</div>
+      </div>
+      <div class="demo-body" style="grid-template-columns:1fr 1fr;">
+        <div class="demo-panel">
+          <div class="demo-panel-label demo-panel-label-output">AI pattern report</div>
+          <div class="demo-result">
+            <div class="demo-result-item">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--go); margin-bottom:5px;">Clean scorecard</div>
+              <div style="font-size:13px; line-height:1.65; color:var(--text);">All four interviewers rated this candidate positively. Every assessment is anchored to transcript evidence. No unsupported opinions flagged.</div>
+            </div>
+            <div class="demo-result-item" style="border-left-color:var(--pause); background:var(--pause-dim);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--pause); margin-bottom:5px;">Pattern noted</div>
+              <div style="font-size:13px; line-height:1.65; color:var(--text);">Every answer was structurally complete. No response was given without a framework. No example was offered unprompted — all were given when directly asked.</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-panel">
+          <div class="demo-panel-label" style="color:var(--accent); font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border);">The human decision</div>
+          <div class="demo-result">
+            <div class="demo-result-item" style="border-left-color:var(--nogo); background:var(--nogo-dim);">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--nogo); margin-bottom:5px;">Interviewer flags — no transcript support</div>
+              <div style="font-size:13px; line-height:1.65; color:var(--text); font-style:italic;">"Too scripted. Too managed. Nothing felt spontaneous. In a role that needs someone who can think in a messy room — I'm a no."</div>
+            </div>
+            <div class="demo-result-item">
+              <div style="font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--go); margin-bottom:5px;">Hiring manager's call</div>
+              <div style="font-size:13px; line-height:1.65; color:var(--text);">AI flagged no transcript evidence for this. The interviewer acknowledged that. The no stood anyway — because some signals only exist in the room. <strong>That's not bias. That's judgment.</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI BOX -->
+    <div class="ai-box">
+      <div class="ai-box-header">
+        <div class="ai-box-title">How AI was used</div>
+      </div>
+      <div class="ai-box-body">
+        <div class="ai-box-prompt">
+          <div class="ai-box-section-label ai-box-section-label-prompt">The prompt <button class="prompt-toggle-btn" onclick="togglePrompt('p4p', this)">View prompt →</button></div>
+          <div class="demo-prompt" id="p4p" style="display:none; margin-top:12px;">
+            <div class="demo-prompt-line">You have all interview transcripts and all written assessments for this candidate.</div>
+            <div class="demo-prompt-line">Do two things:
+              <ul>
+                <li>Read across all transcripts for patterns no single interviewer would see — consistency, contradictions, structural behaviours that repeat.</li>
+                <li>Read each written assessment and flag any opinion that has no supporting evidence in the transcript. Name the claim and note what's missing.</li>
+              </ul>
+            </div>
+            <div class="demo-prompt-footer">Do not make a hire/no-hire recommendation. Surface what the humans need to see before they decide.</div>
+          </div>
+        </div>
+        <div class="ai-box-guardrail">
+          <div class="ai-box-section-label ai-box-section-label-guardrail">The guardrail</div>
+          <div class="ai-box-guardrail-text">AI does not make the call — ever. It surfaces patterns and flags unsupported opinions. The hiring manager decides what to do with every flag. Including overriding it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcome">
+      <div class="outcome-label">Impact</div>
+      The debrief was a conversation about evidence, not a negotiation between opinions. And when a human overrode the data — they did it with eyes open.
+    </div>
+  </div>
+
+</section>
+
+<!-- CLOSING SECTION -->
+<div class="closing">
+  <div class="closing-inner">
+    <div class="closing-left">
+      <div class="closing-eyebrow">Methodology · Reach</div>
+      <div class="closing-title">Built for one hire.<br>Adopted by four organisations.</div>
+      <p class="closing-body">
+        After applying this across three PM hires, the approach was formalised into a workshop. Three other clients — across different sectors and hiring contexts — ran the same system and got the same result: faster decisions, cleaner debriefs, higher confidence in who they hired.<br><br>
+        This is what it looks like to operate as an AI-first consulting practice. Not AI as a feature. AI as a discipline embedded in how the work gets done.
+      </p>
+    </div>
+    <div class="closing-right">
+      <div class="closing-stat">
+        <div class="closing-stat-num">4</div>
+        <div class="closing-stat-label">Organisations running this system</div>
+      </div>
+      <div class="closing-stat">
+        <div class="closing-stat-num">1</div>
+        <div class="closing-stat-label">Workshop to transfer the method</div>
+      </div>
+      <div class="closing-stat">
+        <div class="closing-stat-num">Every</div>
+        <div class="closing-stat-label">offer was made by a human who could explain exactly why</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function togglePrompt(id, btn) {
+    var el = document.getElementById(id);
+    var open = el.style.display !== 'none';
+    el.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? 'View prompt →' : 'Hide prompt ↑';
+  }
+</script>
+</body>
+</html>
